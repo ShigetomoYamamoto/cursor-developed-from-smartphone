@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>まるばつゲーム | Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>まるばつゲーム</h1>
+            <a href="index.html" class="back-link">← プロフィールに戻る</a>
+        </header>
+
+        <main class="game-main">
+            <div class="game-info">
+                <div class="current-player">
+                    <span class="player-label">現在のプレイヤー:</span>
+                    <span class="player-mark" id="currentPlayer">○</span>
+                </div>
+                <div class="game-status" id="gameStatus">ゲーム開始！</div>
+            </div>
+
+            <div class="board-container">
+                <div class="game-board" id="gameBoard">
+                    <div class="cell" data-index="0"></div>
+                    <div class="cell" data-index="1"></div>
+                    <div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div>
+                    <div class="cell" data-index="4"></div>
+                    <div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div>
+                    <div class="cell" data-index="7"></div>
+                    <div class="cell" data-index="8"></div>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button class="btn-reset" id="resetButton">新しいゲーム</button>
+            </div>
+
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="score-label">○ の勝利</span>
+                    <span class="score-value" id="scoreO">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">引き分け</span>
+                    <span class="score-value" id="scoreDraw">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">× の勝利</span>
+                    <span class="score-value" id="scoreX">0</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

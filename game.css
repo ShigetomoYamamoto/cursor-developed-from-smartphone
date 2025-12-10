@@ -1,0 +1,349 @@
+/* リセット & ベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --bg-color: #ffffff;
+    --bg-alt: #f9fafb;
+    --border-color: #e5e7eb;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --cell-size: 120px;
+    --cell-size-mobile: 90px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 20px;
+}
+
+/* iOS Safari向けのタッチ操作改善 */
+a, button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.game-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.game-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+    margin-top: 0.5rem;
+}
+
+.back-link:hover {
+    opacity: 1;
+}
+
+.game-main {
+    padding: 2rem 1.5rem;
+}
+
+.game-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.current-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+.player-label {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.player-mark {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    min-width: 50px;
+    text-align: center;
+}
+
+.player-mark.x {
+    color: #ef4444;
+}
+
+.player-mark.o {
+    color: #3b82f6;
+}
+
+.game-status {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.game-status.winner {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.game-status.draw {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    background-color: var(--text-color);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    width: fit-content;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.cell:hover:not(.filled):not(.disabled) {
+    background-color: var(--bg-alt);
+    transform: scale(1.05);
+}
+
+.cell.filled {
+    cursor: default;
+}
+
+.cell.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.cell.x {
+    color: #ef4444;
+}
+
+.cell.o {
+    color: #3b82f6;
+}
+
+.cell.winning {
+    background-color: #fef3c7;
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.game-controls {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btn-reset {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: var(--shadow);
+}
+
+.btn-reset:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-reset:active {
+    transform: translateY(0);
+}
+
+.score-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    background-color: var(--bg-alt);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.score-item {
+    text-align: center;
+}
+
+.score-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.score-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .game-header {
+        padding: 1.5rem 1rem;
+    }
+
+    .game-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .game-main {
+        padding: 1.5rem 1rem;
+    }
+
+    .current-player {
+        font-size: 1rem;
+    }
+
+    .player-mark {
+        font-size: 1.5rem;
+        min-width: 40px;
+    }
+
+    .game-status {
+        font-size: 0.9rem;
+    }
+
+    .game-status.winner,
+    .game-status.draw {
+        font-size: 1.125rem;
+    }
+
+    .cell {
+        width: var(--cell-size-mobile);
+        height: var(--cell-size-mobile);
+        font-size: 2.5rem;
+    }
+
+    .btn-reset {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .score-board {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .score-label {
+        font-size: 0.75rem;
+    }
+
+    .score-value {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .game-board {
+        gap: 6px;
+        padding: 6px;
+    }
+
+    .score-board {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .score-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        background-color: white;
+        border-radius: 8px;
+    }
+
+    .score-label {
+        margin-bottom: 0;
+    }
+}
