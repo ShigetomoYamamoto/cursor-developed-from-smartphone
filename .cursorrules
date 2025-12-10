@@ -1,0 +1,33 @@
+# ブランチ管理ルール
+
+このリポジトリでは、作業ブランチと公開ブランチを分けて管理しています。
+
+## ブランチ構成
+
+- **作業ブランチ**: `feature/create-profile-page` - 開発・修正作業用
+- **公開ブランチ**: `gh-pages` - GitHub Pagesで公開されるブランチ
+
+## 重要なルール
+
+1. **作業ブランチで開発・修正を行う**
+   - すべての開発・修正作業は `feature/create-profile-page` ブランチで行う
+   - このブランチでコミット・プッシュする
+
+2. **公開ブランチは直接編集しない**
+   - `gh-pages` ブランチは直接編集しない
+   - 作業ブランチからマージする形で更新する
+
+3. **公開時の手順**
+   - 作業が完了したら、`gh-pages` ブランチに切り替える
+   - `git merge feature/create-profile-page` でマージする
+   - `git push origin gh-pages` でプッシュする
+
+4. **GitHub Pages**
+   - `gh-pages` ブランチの内容が自動的に公開される
+   - 公開URL: https://shigetomoyamamoto.github.io/cursor-developed-from-smartphone/
+
+## 作業時の注意
+
+- ファイルを編集する際は、必ず作業ブランチ（`feature/create-profile-page`）にいることを確認する
+- コミット・プッシュは作業ブランチに対して行う
+- 公開が必要な場合のみ、`gh-pages` ブランチにマージする
